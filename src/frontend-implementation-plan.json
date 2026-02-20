@@ -1,0 +1,295 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Neon Genesis Sustainable Ideas Platform - Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement user authentication flow with Internet Identity including profile setup for first-time users",
+      "acceptanceCriteria": [
+        "Users can authenticate using Internet Identity",
+        "User sessions persist across page reloads",
+        "Authenticated users can access posting and interaction features"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/LoginButton.tsx",
+          "operation": "create",
+          "description": "Create login/logout button component using useInternetIdentity hook. Use the authorization component to handle authentication state and query client clearing on logout. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ProfileSetup.tsx",
+          "operation": "create",
+          "description": "Create profile setup modal that prompts first-time users to enter their name after authentication. Uses getCallerUserProfile and saveCallerUserProfile backend methods. Implements the authorization component's guidance to prevent modal flash by checking actorFetching state. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useGetCallerUserProfile.ts",
+          "operation": "create",
+          "description": "Create React Query hook to fetch current user profile using getCallerUserProfile backend method. Implements proper loading state handling per authorization component guidelines to prevent profile setup modal flash. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useSaveCallerUserProfile.ts",
+          "operation": "create",
+          "description": "Create React Query mutation hook to save user profile using saveCallerUserProfile backend method with proper query invalidation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build post creation interface for authenticated users to submit new sustainable ideas",
+      "acceptanceCriteria": [
+        "Form includes fields for title, description, and category dropdown",
+        "Virtual prototype can be added as text description or image upload",
+        "Posts are successfully submitted to the backend",
+        "Form validation ensures all required fields are filled"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/CreatePostForm.tsx",
+          "operation": "create",
+          "description": "Create form component with title input, description textarea, category dropdown (environmental, disaster-related, sustainable infrastructure/business), and virtual prototype section supporting text description and image upload. Uses createPost backend method. Implements form validation. For image uploads, use the blob-storage component's ExternalBlob.fromBytes() with upload progress tracking. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useCreatePost.ts",
+          "operation": "create",
+          "description": "Create React Query mutation hook for createPost backend method with query invalidation for post feed refresh."
+        },
+        {
+          "path": "frontend/src/pages/CreatePostPage.tsx",
+          "operation": "create",
+          "description": "Create page wrapping CreatePostForm component with authentication guard ensuring only logged-in users can access."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for /create-post pointing to CreatePostPage component with authentication protection."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement Instagram-like feed view displaying all posted ideas with responsive card layout",
+      "acceptanceCriteria": [
+        "Ideas are displayed in a responsive card grid layout",
+        "Each card shows title, author, category tag, and preview of description",
+        "Feed loads additional posts as user scrolls",
+        "Visual design is modern and Instagram-inspired"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/PostCard.tsx",
+          "operation": "create",
+          "description": "Create Instagram-inspired post card component displaying post title, author name (from UserProfile), category badge, description preview, like count, investment rating counts (diamond, blue sapphire, red ruby with counts), and action buttons. Includes like button, comment count display, and investment rating buttons with gem icons from frontend/public/assets/generated/diamond-icon.dim_64x64.png, frontend/public/assets/generated/blue-sapphire-icon.dim_64x64.png, and frontend/public/assets/generated/red-ruby-icon.dim_64x64.png. Card design uses neon accents and modern typography per REQ-9."
+        },
+        {
+          "path": "frontend/src/components/FeedGrid.tsx",
+          "operation": "create",
+          "description": "Create responsive grid layout component for displaying PostCard components in Instagram-style masonry or grid format with smooth animations and infinite scroll capability."
+        },
+        {
+          "path": "frontend/src/hooks/useGetAllPosts.ts",
+          "operation": "create",
+          "description": "Create React Query hook to fetch all posts using getAllPosts backend method with proper loading and error states."
+        },
+        {
+          "path": "frontend/src/pages/FeedPage.tsx",
+          "operation": "create",
+          "description": "Create main feed page displaying hero banner from frontend/public/assets/generated/hero-banner.dim_1200x400.png at the top, followed by category filter controls (REQ-5), and FeedGrid component. Includes authentication check and displays LoginButton in header."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for / (root) pointing to FeedPage component as the main landing page."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add category filtering capability to the feed view",
+      "acceptanceCriteria": [
+        "Filter buttons or dropdown for each category is visible on the feed page",
+        "Selecting a filter shows only posts matching that category",
+        "Users can clear filters to see all posts",
+        "Backend query supports category filtering"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/CategoryFilter.tsx",
+          "operation": "create",
+          "description": "Create category filter component with buttons for All, Environmental, Disaster-Related, and Sustainable Infrastructure/Business. Implements active state styling with neon accents. Accepts onFilterChange callback prop."
+        },
+        {
+          "path": "frontend/src/hooks/useGetPostsByCategory.ts",
+          "operation": "create",
+          "description": "Create React Query hook to fetch filtered posts using getPostsByCategory backend method, accepting category parameter."
+        },
+        {
+          "path": "frontend/src/pages/FeedPage.tsx",
+          "operation": "modify",
+          "description": "Integrate CategoryFilter component and implement filter state management. Switch between useGetAllPosts and useGetPostsByCategory hooks based on active filter."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Implement like/unlike functionality with visual feedback and count display",
+      "acceptanceCriteria": [
+        "Each post displays a like button and current like count",
+        "Users can toggle like/unlike on posts",
+        "Backend tracks which users liked which posts",
+        "Like count updates in real-time after user interaction"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useLikePost.ts",
+          "operation": "create",
+          "description": "Create React Query mutation hook for likePost backend method with optimistic updates and query invalidation."
+        },
+        {
+          "path": "frontend/src/hooks/useUnlikePost.ts",
+          "operation": "create",
+          "description": "Create React Query mutation hook for unlikePost backend method with optimistic updates and query invalidation."
+        },
+        {
+          "path": "frontend/src/components/LikeButton.tsx",
+          "operation": "create",
+          "description": "Create like button component with heart icon, like count display, and toggle functionality using useLikePost and useUnlikePost hooks. Includes visual feedback for liked state with neon accent styling."
+        },
+        {
+          "path": "frontend/src/components/PostCard.tsx",
+          "operation": "modify",
+          "description": "Integrate LikeButton component into post card layout with proper spacing and styling."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Build commenting system with comment submission and display",
+      "acceptanceCriteria": [
+        "Each post has a comment section showing all comments",
+        "Authenticated users can submit new comments",
+        "Comments display author identity and timestamp",
+        "Comments are stored in backend and retrieved per post"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/CommentSection.tsx",
+          "operation": "create",
+          "description": "Create comment section component displaying all comments for a post with author names, timestamps, and comment text. Includes comment input form for authenticated users. Uses getComments backend method."
+        },
+        {
+          "path": "frontend/src/hooks/useGetComments.ts",
+          "operation": "create",
+          "description": "Create React Query hook to fetch comments for a specific post using getComments backend method with postId parameter."
+        },
+        {
+          "path": "frontend/src/hooks/useAddComment.ts",
+          "operation": "create",
+          "description": "Create React Query mutation hook for addComment backend method with query invalidation for comment refresh."
+        },
+        {
+          "path": "frontend/src/components/PostDetailView.tsx",
+          "operation": "create",
+          "description": "Create detailed post view component showing full post content, virtual prototype details, and CommentSection component. Used when user clicks on a post card."
+        },
+        {
+          "path": "frontend/src/pages/PostDetailPage.tsx",
+          "operation": "create",
+          "description": "Create page wrapping PostDetailView component, accepting postId from route params and fetching post data using getPost backend method."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for /post/:postId pointing to PostDetailPage component."
+        },
+        {
+          "path": "frontend/src/components/PostCard.tsx",
+          "operation": "modify",
+          "description": "Add click handler to navigate to post detail page when card is clicked, and display comment count."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Create three-tier investment rating system with gem badges",
+      "acceptanceCriteria": [
+        "Each post displays three rating buttons: diamond (100-300), blue sapphire (300-500), red ruby (500-700)",
+        "Users can select one rating tier per post",
+        "Backend stores user ratings and calculates aggregate counts per tier",
+        "Each post shows count of how many users selected each investment tier",
+        "Rating buttons are visually distinct with gem/stone icons"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/InvestmentRating.tsx",
+          "operation": "create",
+          "description": "Create investment rating component with three rating buttons displaying gem icons (frontend/public/assets/generated/diamond-icon.dim_64x64.png, frontend/public/assets/generated/blue-sapphire-icon.dim_64x64.png, frontend/public/assets/generated/red-ruby-icon.dim_64x64.png), dollar ranges (100-300, 300-500, 500-700), and current counts. Implements radio-style selection where only one rating can be active per user. Uses addInvestmentRating backend method."
+        },
+        {
+          "path": "frontend/src/hooks/useAddInvestmentRating.ts",
+          "operation": "create",
+          "description": "Create React Query mutation hook for addInvestmentRating backend method with query invalidation for post data refresh."
+        },
+        {
+          "path": "frontend/src/components/PostCard.tsx",
+          "operation": "modify",
+          "description": "Integrate InvestmentRating component into post card layout below description and above like button."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Apply Instagram-inspired visual theme with neon accents throughout the application",
+      "acceptanceCriteria": [
+        "UI uses modern, clean design with neon accent colors reflecting the 'Neon Genesis' branding",
+        "Typography is legible and contemporary",
+        "Card layouts are visually appealing with consistent spacing and borders",
+        "Hover and click interactions include smooth transitions",
+        "Overall aesthetic is cohesive across all pages and components"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define custom CSS variables for Neon Genesis color palette including neon greens, electric blues, neon pinks/purples as accent colors, with dark background and light text. Add base styles for smooth transitions and modern typography."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with custom colors for neon accents (neon-green, neon-blue, neon-pink), custom fonts, and animation utilities for smooth hover effects and transitions."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "create",
+          "description": "Create layout component with header containing app branding ('Neon Genesis' with neon styling), navigation links (Feed, Create Post), and LoginButton. Applies consistent styling and spacing across all pages."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap all routes with Layout component to ensure consistent header, navigation, and styling across the application."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Integrate generated hero banner and gem rating icons as static assets",
+      "acceptanceCriteria": [
+        "Generated hero banner is displayed prominently on the landing or feed page",
+        "Diamond, blue sapphire, and red ruby rating icons are used in the investment rating UI",
+        "Images are loaded from frontend/public/assets/generated directory"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/FeedPage.tsx",
+          "operation": "modify",
+          "description": "Add hero banner image at the top of the feed page using the generated file at frontend/public/assets/generated/hero-banner.dim_1200x400.png with proper responsive sizing and positioning."
+        },
+        {
+          "path": "frontend/src/components/InvestmentRating.tsx",
+          "operation": "modify",
+          "description": "Ensure gem icons are loaded from frontend/public/assets/generated/diamond-icon.dim_64x64.png, frontend/public/assets/generated/blue-sapphire-icon.dim_64x64.png, and frontend/public/assets/generated/red-ruby-icon.dim_64x64.png with proper sizing and accessibility attributes."
+        }
+      ]
+    }
+  ]
+}

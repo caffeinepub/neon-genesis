@@ -1,0 +1,219 @@
+{
+  "kind": "build_request",
+  "title": "Create Neon Genesis sustainable ideas sharing platform",
+  "projectName": "Neon Genesis",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement user authentication using Internet Identity to allow users to sign up and log in",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "everyone can share and explore ideas"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can authenticate using Internet Identity",
+        "User sessions persist across page reloads",
+        "Authenticated users can access posting and interaction features"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Create a backend data model for ideas/posts that includes title, description, category (environmental, disaster-related, or sustainable infrastructure/business), author identity, creation timestamp, and virtual prototype information",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "share and explore ideas regarding environmental, disaster related or any sustainable infrastructure or business solutions"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores idea posts with all required fields",
+        "Each post is associated with the creator's principal ID",
+        "Categories are enforced to be one of: environmental, disaster-related, or sustainable infrastructure/business"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build a post creation interface where authenticated users can create and submit new ideas with title, description, category selection, and virtual prototype content",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "they can create virtual prototypes and post it in the website easily"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Form includes fields for title, description, and category dropdown",
+        "Virtual prototype can be added as text description or image upload",
+        "Posts are successfully submitted to the backend",
+        "Form validation ensures all required fields are filled"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement a feed view displaying all posted ideas in an Instagram-like card layout with infinite scroll or pagination",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "everyone can share and explore ideas",
+          "make this app attractive and usable like Instagram"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Ideas are displayed in a responsive card grid layout",
+        "Each card shows title, author, category tag, and preview of description",
+        "Feed loads additional posts as user scrolls",
+        "Visual design is modern and Instagram-inspired"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add filtering capability to the feed allowing users to filter ideas by category (environmental, disaster-related, sustainable infrastructure/business)",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "explore ideas regarding environmental, disaster related or any sustainable infrastructure or business solutions"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Filter buttons or dropdown for each category is visible on the feed page",
+        "Selecting a filter shows only posts matching that category",
+        "Users can clear filters to see all posts",
+        "Backend query supports category filtering"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Implement a like system where authenticated users can like posts, with like counts displayed on each post and users able to unlike posts they previously liked",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "everyone can like and comment on the posts"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each post displays a like button and current like count",
+        "Users can toggle like/unlike on posts",
+        "Backend tracks which users liked which posts",
+        "Like count updates in real-time after user interaction"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Build a commenting system where authenticated users can add text comments to posts and view all comments on a post",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "everyone can like and comment on the posts"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each post has a comment section showing all comments",
+        "Authenticated users can submit new comments",
+        "Comments display author identity and timestamp",
+        "Comments are stored in backend and retrieved per post"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Create a three-tier investment rating system where users can rate posts with diamond (100-300 dollars), blue sapphire (300-500 dollars), or red ruby (500-700 dollars) badges indicating their willingness to invest, with aggregate rating counts displayed on each post",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "rating system on each post for example diamond, blue sapphire and red ruby stone each signifying the money range people want to or willing to invest",
+          "diamond being for instance 100-300 dollars, blue stone 300-500 dollars and red stone 500-700 dollars"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each post displays three rating buttons: diamond (100-300), blue sapphire (300-500), red ruby (500-700)",
+        "Users can select one rating tier per post",
+        "Backend stores user ratings and calculates aggregate counts per tier",
+        "Each post shows count of how many users selected each investment tier",
+        "Rating buttons are visually distinct with gem/stone icons"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Design and implement an attractive Instagram-inspired visual theme with vibrant neon accents, modern typography, card-based layouts, smooth animations, and a cohesive color scheme that emphasizes sustainability and innovation",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "make this app attractive and usable like Instagram",
+          "named Neon Genesis"
+        ]
+      },
+      "acceptanceCriteria": [
+        "UI uses modern, clean design with neon accent colors reflecting the 'Neon Genesis' branding",
+        "Typography is legible and contemporary",
+        "Card layouts are visually appealing with consistent spacing and borders",
+        "Hover and click interactions include smooth transitions",
+        "Overall aesthetic is cohesive across all pages and components"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Render generated hero banner image and gem/stone rating icons as static assets in frontend/public/assets/generated",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated hero banner is displayed prominently on the landing or feed page",
+        "Diamond, blue sapphire, and red ruby rating icons are used in the investment rating UI",
+        "Images are loaded from frontend/public/assets/generated directory"
+      ]
+    }
+  ],
+  "constraints": [
+    "Use Internet Identity for all authentication, no third-party auth providers",
+    "All backend logic must reside in a single Motoko actor file",
+    "Frontend must use React, TypeScript, Tailwind CSS, and React Query",
+    "Do not modify immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui"
+  ],
+  "nonGoals": [
+    "Real-time notifications or push alerts",
+    "Direct messaging between users",
+    "Actual payment processing or financial transactions",
+    "Mobile app versions (React Native or Flutter)",
+    "Third-party social media integrations"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Hero banner with vibrant neon lights and abstract sustainable/environmental theme featuring greens, electric blues, and neon accents (hero-banner.dim_1200x400.png)",
+      "Diamond gem icon with transparent background, sparkling white/silver diamond suitable for investment rating button (diamond-icon.dim_64x64.png)",
+      "Blue sapphire gem icon with transparent background, deep blue sapphire suitable for investment rating button (blue-sapphire-icon.dim_64x64.png)",
+      "Red ruby gem icon with transparent background, vibrant red ruby suitable for investment rating button (red-ruby-icon.dim_64x64.png)"
+    ],
+    "edits": []
+  }
+}

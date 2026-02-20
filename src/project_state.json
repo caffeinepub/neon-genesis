@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Neon Genesis - A social platform for sharing and exploring environmental, disaster-related, and sustainable infrastructure/business ideas. Users can create virtual prototypes, post ideas, like and comment on posts, and use a three-tier investment rating system (diamond: $100-300, blue sapphire: $300-500, red ruby: $500-700). The platform should be attractive and user-friendly like Instagram.",
+  "architectural_notes": [
+    "Social platform focused on sustainable and environmental solutions",
+    "Three-tier investment interest indicator system using gemstone metaphors",
+    "Virtual prototype creation and sharing capability required",
+    "Instagram-inspired UI/UX design pattern"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Hero banner with vibrant neon lights and abstract sustainable/environmental theme featuring greens, electric blues, and neon accents (hero-banner.dim_1200x400.png)\n- Diamond gem icon with transparent background, sparkling white/silver diamond suitable for investment rating button (diamond-icon.dim_64x64.png)\n- Blue sapphire gem icon with transparent background, deep blue sapphire suitable for investment rating button (blue-sapphire-icon.dim_64x64.png)\n- Red ruby gem icon with transparent background, vibrant red ruby suitable for investment rating button (red-ruby-icon.dim_64x64.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-user-authentication-using-internet-identity-to-allow-users-to-sign-up-and-log-in",
+      "title": "Implement user authentication using Internet Identity to allow users to sign up and log in",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-post-creation-interface-where-authenticated-users-can-create-and-submit-new-ideas-with-title-description-category-selection-and-virtual-prototype-content",
+      "title": "Build a post creation interface where authenticated users can create and submit new ideas with title, description, category selection, and virtual prototype content",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-feed-view-displaying-all-posted-ideas-in-an-instagram-like-card-layout-with-infinite-scroll-or-pagination",
+      "title": "Implement a feed view displaying all posted ideas in an Instagram-like card layout with infinite scroll or pagination",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-filtering-capability-to-the-feed-allowing-users-to-filter-ideas-by-category-environmental-disaster-related-sustainable-infrastructure-business",
+      "title": "Add filtering capability to the feed allowing users to filter ideas by category (environmental, disaster-related, sustainable infrastructure/business)",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-like-system-where-authenticated-users-can-like-posts-with-like-counts-displayed-on-each-post-and-users-able-to-unlike-posts-they-previously-liked",
+      "title": "Implement a like system where authenticated users can like posts, with like counts displayed on each post and users able to unlike posts they previously liked",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-commenting-system-where-authenticated-users-can-add-text-comments-to-posts-and-view-all-comments-on-a-post",
+      "title": "Build a commenting system where authenticated users can add text comments to posts and view all comments on a post",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-three-tier-investment-rating-system-where-users-can-rate-posts-with-diamond-100-300-dollars-blue-sapphire-300-500-dollars-or-red-ruby-500-700-dollars-badges-indicating-their-willingness-to-invest-with-aggregate-rating-counts-displayed-on-each-post",
+      "title": "Create a three-tier investment rating system where users can rate posts with diamond (100-300 dollars), blue sapphire (300-500 dollars), or red ruby (500-700 dollars) badges indicating their willingness to invest, with aggregate rating counts displayed on each post",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-and-implement-an-attractive-instagram-inspired-visual-theme-with-vibrant-neon-accents-modern-typography-card-based-layouts-smooth-animations-and-a-cohesive-color-scheme-that-emphasizes-sustainability-and-innovation",
+      "title": "Design and implement an attractive Instagram-inspired visual theme with vibrant neon accents, modern typography, card-based layouts, smooth animations, and a cohesive color scheme that emphasizes sustainability and innovation",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-render-generated-hero-banner-image-and-gem-stone-rating-icons-as-static-assets-in-frontend-public-assets-generated",
+      "title": "Render generated hero banner image and gem/stone rating icons as static assets in frontend/public/assets/generated",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "User authentication and profile system",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create and post ideas with virtual prototype creation tools",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Browse and explore ideas feed with filtering by category (environmental, disaster, sustainable infrastructure)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Like and comment system for posts",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Three-tier investment rating system (diamond $100-300, blue sapphire $300-500, red ruby $500-700)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Instagram-like attractive and usable UI/UX design",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Create a backend data model for ideas/posts that includes title, description, category (environmental, disaster-related, or sustainable infrastructure/business), author identity, creation timestamp, and virtual prototype information",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Neon Genesis",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
